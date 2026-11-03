@@ -11,6 +11,7 @@
 - 本地运行：`GITHUB_TOKEN="$(gh auth token)" python3 update_profile.py`。
 - 若本地 Python 缺少系统 CA，可使用 `SSL_CERT_FILE=/etc/ssl/cert.pem`，不要关闭 TLS 验证。
 - README 严格保留五行 picture，维护说明放本文件，不加进主页。
+- 图片采用 GitHub 的 `raw.github.com` 官方旧域名（重定向到 raw.githubusercontent.com），让 GitHub Markdown 使用 camo 图片代理。这样本地网络不能直连 raw.githubusercontent.com 时仍可显示。GitHub 图片缓存可能导致短时显示旧统计。
 
 ## 数据含义
 
