@@ -18,6 +18,7 @@ import os
 from pathlib import Path
 import random
 import time
+import unicodedata
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
@@ -77,8 +78,13 @@ def api(path, payload=None):
             with urlopen(Request(url, data=body, headers=headers), timeout=60) as response:
                 result = json.load(response)
             if isinstance(result, dict) and result.get("errors"):
-                messages = "; ".join(e.get("message", "GraphQL error") for e in result["errors"])
-                # Never accept GraphQL partial data as a successful measurement.
+                errors = result["errors"]
+                messages = "; ".join(e.get("message", "GraphQL error") for e in errors)
+                # GitHub can report throttling with HTTP 200. Retry the entire
+                # query, never accept its partial data as a successful measure.
+                if any(e.get("type") == "RATE_LIMITED" for e in errors) and attempt < 5:
+                    time.sleep(2 ** attempt + random.random())
+                    continue
                 raise RuntimeError(messages)
             return result
         except HTTPError as exc:
@@ -87,7 +93,8 @@ def api(path, payload=None):
                                     exc.headers.get("X-RateLimit-Remaining") == "0"))
             if not retryable or attempt == 5:
                 raise RuntimeError(f"GitHub HTTP {exc.code} at {path}") from exc
-            wait = max(2 ** attempt, int(exc.headers.get("Retry-After", "0")))
+            reset = max(0, int(exc.headers.get("X-RateLimit-Reset", "0")) - time.time() + 1)
+            wait = max(2 ** attempt, int(exc.headers.get("Retry-After", "0")), reset)
             if wait > 120:
                 raise RuntimeError("GitHub rate limit requires a later retry; keeping previous SVGs.") from exc
         except (URLError, TimeoutError, ConnectionError) as exc:
@@ -222,9 +229,26 @@ def collect():
                 updated=now.strftime("%Y-%m-%d %H:%M UTC"))
 
 
+def cell_width(text):
+    """Conservative monospace advance for CJK and combining Unicode text."""
+    return sum(0 if unicodedata.combining(c) else
+               2 if unicodedata.east_asian_width(c) in ('W', 'F') else 1 for c in text)
+
+
+def fit_cells(text, maximum):
+    if cell_width(text) <= maximum:
+        return text
+    result = ''
+    for char in text:
+        if cell_width(result + char) > maximum - 3:
+            break
+        result += char
+    return result + '...'
+
+
 def dotted(key, value, width=56):
     """Never allow an overlong field to silently overflow the information column."""
-    dots = width - len(key) - len(value) - 3
+    dots = width - cell_width(key) - cell_width(value) - 3
     if dots < 0:
         raise ValueError(f"Field is too wide ({key!r}, {value!r})")
     return [("k", key), ("d", " " + "." * dots + " "), ("v", value)]
@@ -240,7 +264,7 @@ def render(stats, theme):
             dotted("Host", "GitHub"),
             dotted("Account since", profile["created_at"][:10])]
     if profile.get("location"):
-        rows.append(dotted("Location", profile["location"][:30]))
+        rows.append(dotted("Location", fit_cells(profile["location"], 30)))
     rows.append(dotted("Languages", " / ".join(stats["languages"])))
     rows += [[], [("d", "─ Contact " + "─" * 32)]]
     if profile.get("email"):

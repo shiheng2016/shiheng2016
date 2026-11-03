@@ -62,6 +62,40 @@ class ProfileTests(unittest.TestCase):
         self.assertNotIn('__AVATAR_PENDING__',p.ART)
         self.assertEqual(len((p.ROOT/'README.md').read_text().splitlines()),5)
 
+    def test_cjk_width(self):
+        stats=self.fixture()
+        stats['profile']['location']='上'*30
+        xml=p.render(stats,'dark')
+        root=ET.fromstring(xml)
+        for row in root.findall('{http://www.w3.org/2000/svg}text'):
+            if row.attrib['x']=='390':
+                self.assertLessEqual(p.cell_width(''.join(row.itertext())),56)
+        self.assertIn('...',xml)
+
+    def test_avatar_reproducibility(self):
+        from tools.ascii_avatar import decode_png, render_ascii
+        width,height,pixels=decode_png(p.ROOT/'img/avatar.png')
+        art=render_ascii(width,height,pixels,background='portrait-wall')
+        self.assertEqual(art,(p.ROOT/'tools/avatar.txt').read_text())
+        self.assertEqual(art.rstrip('\n'),p.ART.strip('\n'))
+
+    def test_graphql_rate_limit_retries(self):
+        import io
+        from urllib.error import HTTPError
+        def response(data):
+            return io.StringIO(p.json.dumps(data))
+        with patch.dict(os.environ,{'GITHUB_TOKEN':'fake'},clear=True), \
+             patch.object(p,'urlopen',side_effect=[response({'errors':[{'type':'RATE_LIMITED'}]}),response({'data':{}})]), \
+             patch.object(p.time,'sleep') as sleep:
+            self.assertEqual(p.api('graphql',{}),{'data':{}})
+            sleep.assert_called_once()
+        error=HTTPError('url',403,'limited',{'X-RateLimit-Remaining':'0','X-RateLimit-Reset':'1090'},None)
+        with patch.dict(os.environ,{'GITHUB_TOKEN':'fake'},clear=True), \
+             patch.object(p,'urlopen',side_effect=[error,response({'ok':True})]), \
+             patch.object(p.time,'time',return_value=1000),patch.object(p.time,'sleep') as sleep:
+            p.api('graphql',{})
+            self.assertGreaterEqual(sleep.call_args.args[0],90)
+
     def test_field_overflow_is_explicit(self):
         with self.assertRaises(ValueError):
             p.dotted('Email','x'*70)
