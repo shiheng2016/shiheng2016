@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="500" viewBox="0 0 840 500"
+     font-family="Consolas, Menlo, monospace" font-size="13px" role="img" aria-labelledby="title desc">
+<title id="title">shiheng2016 — GitHub terminal profile</title>
+<desc id="desc">ASCII avatar and automatically refreshed GitHub statistics. Commits are contribution-calendar commits. Lines of Code counts authored changes on owned repositories’ default branches, including forks, not current source size.</desc>
+<rect x="0.5" y="0.5" width="839" height="499" rx="10" fill="#0d1117" stroke="#30363d"/>
+<text x="10" y="112.5" xml:space="preserve" fill="#8b949e">                     .</text>
+<text x="10" y="127.5" xml:space="preserve" fill="#8b949e">                   .-.</text>
+<text x="10" y="142.5" xml:space="preserve" fill="#8b949e">                 .........</text>
+<text x="10" y="157.5" xml:space="preserve" fill="#8b949e">                ..........:.</text>
+<text x="10" y="172.5" xml:space="preserve" fill="#8b949e">               .:..........:</text>
+<text x="10" y="187.5" xml:space="preserve" fill="#8b949e">               .:..::::::....</text>
+<text x="10" y="202.5" xml:space="preserve" fill="#8b949e">               .......::.....</text>
+<text x="10" y="217.5" xml:space="preserve" fill="#8b949e">                ......::::..</text>
+<text x="10" y="232.5" xml:space="preserve" fill="#8b949e">                 .....:::::</text>
+<text x="10" y="247.5" xml:space="preserve" fill="#8b949e">                  ....:::-.</text>
+<text x="10" y="262.5" xml:space="preserve" fill="#8b949e">                  ....:::..</text>
+<text x="10" y="277.5" xml:space="preserve" fill="#8b949e">              .:::.........-:.</text>
+<text x="10" y="292.5" xml:space="preserve" fill="#8b949e">         .:-=++++=  ......:-:::::..</text>
+<text x="10" y="307.5" xml:space="preserve" fill="#8b949e">      .-+++++++++- ....  :=------:::..</text>
+<text x="10" y="322.5" xml:space="preserve" fill="#8b949e">      =++++++++++- . ... -=--- :--:..</text>
+<text x="10" y="337.5" xml:space="preserve" fill="#8b949e">     .+++++++++++-.     .====..--.     ..</text>
+<text x="10" y="352.5" xml:space="preserve" fill="#8b949e">     :+++++++++++-. .  .-====-=:   ......</text>
+<text x="10" y="367.5" xml:space="preserve" fill="#8b949e">     =+++++++++++-...  .====-=-    . . ..</text>
+<text x="10" y="382.5" xml:space="preserve" fill="#8b949e">     +++==++=++++=..   :==++==.       ...</text>
+<text x="10" y="397.5" xml:space="preserve" fill="#8b949e">    .++++:+++++++=:.   =+++++=.  ..........</text>
+<text x="10" y="412.5" xml:space="preserve" fill="#8b949e">    :++++:++++++++:.  .++++++=.  ..........</text>
+<text x="390" y="45" xml:space="preserve"><tspan fill="#58a6ff">shiheng2016@github</tspan></text>
+<text x="390" y="66" xml:space="preserve"><tspan fill="#484f58">──────────────────────────────────────────</tspan></text>
+<text x="390" y="87" xml:space="preserve"><tspan fill="#ffa657">Host</tspan><tspan fill="#484f58"> ........................................... </tspan><tspan fill="#c9d1d9">GitHub</tspan></text>
+<text x="390" y="108" xml:space="preserve"><tspan fill="#ffa657">Account since</tspan><tspan fill="#484f58"> .............................. </tspan><tspan fill="#c9d1d9">2016-04-23</tspan></text>
+<text x="390" y="129" xml:space="preserve"><tspan fill="#ffa657">Location</tspan><tspan fill="#484f58"> ............................... </tspan><tspan fill="#c9d1d9">ShangHai,China</tspan></text>
+<text x="390" y="150" xml:space="preserve"><tspan fill="#ffa657">Languages</tspan><tspan fill="#484f58"> ..................... </tspan><tspan fill="#c9d1d9">HTML / JavaScript / CSS</tspan></text>
+<text x="390" y="171" xml:space="preserve"></text>
+<text x="390" y="192" xml:space="preserve"><tspan fill="#484f58">─ Contact ────────────────────────────────</tspan></text>
+<text x="390" y="213" xml:space="preserve"><tspan fill="#ffa657">Email</tspan><tspan fill="#484f58"> ........................ </tspan><tspan fill="#c9d1d9">shiweiping0828@gmail.com</tspan></text>
+<text x="390" y="234" xml:space="preserve"><tspan fill="#ffa657">Site</tspan><tspan fill="#484f58"> ......................... </tspan><tspan fill="#c9d1d9">www.yuque.com/allenstone</tspan></text>
+<text x="390" y="255" xml:space="preserve"><tspan fill="#ffa657">X</tspan><tspan fill="#484f58"> ........................................... </tspan><tspan fill="#c9d1d9">@VPingShi</tspan></text>
+<text x="390" y="276" xml:space="preserve"></text>
+<text x="390" y="297" xml:space="preserve"><tspan fill="#484f58">─ GitHub Stats ───────────────────────────</tspan></text>
+<text x="390" y="318" xml:space="preserve"><tspan fill="#ffa657">Repos {Contributed}</tspan><tspan fill="#484f58"> ............................ </tspan><tspan fill="#c9d1d9">47 {0}</tspan></text>
+<text x="390" y="339" xml:space="preserve"><tspan fill="#ffa657">Stars</tspan><tspan fill="#484f58"> .............................................. </tspan><tspan fill="#c9d1d9">41</tspan></text>
+<text x="390" y="360" xml:space="preserve"><tspan fill="#ffa657">Commits | Followers</tspan><tspan fill="#484f58"> ........................... </tspan><tspan fill="#c9d1d9">38 | 17</tspan></text>
+<text x="390" y="381" xml:space="preserve"><tspan fill="#ffa657">Lines of Code</tspan><tspan fill="#484f58"> .............. </tspan><tspan fill="#c9d1d9">641,737 (</tspan><tspan fill="#3fb950">+678,216</tspan><tspan fill="#c9d1d9"> </tspan><tspan fill="#f85149">-36,479</tspan><tspan fill="#c9d1d9">)</tspan></text>
+<text x="390" y="402" xml:space="preserve"><tspan fill="#ffa657">Scope</tspan><tspan fill="#484f58"> ....................... </tspan><tspan fill="#c9d1d9">public / default branches</tspan></text>
+<text x="390" y="423" xml:space="preserve"><tspan fill="#ffa657">Updated</tspan><tspan fill="#484f58"> .......................... </tspan><tspan fill="#c9d1d9">2026-11-03 05:17 UTC</tspan></text>
+</svg>
